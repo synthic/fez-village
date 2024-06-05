@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Fez</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="user-scalable = no" />
+<link rel="apple-touch-icon-precomposed" href="icon.png"/>
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/icon.png"/>
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/icon2.png"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<script type="text/javascript">
+
+/*
+var gomX = 20;
+var gomY = 20;
+
+document.onkeydown = function(event) {
+  var key_code = event.keyCode;
+  if (key_code = 68){
+    holdingD = true;
+    moveRight();
+  }
+}
+
+document.onkeyup = function(event){
+    var key_press = String.fromCharCode(event.keyCode);
+	var status = document.getElementById('status');
+	status.innerHTML = "UP Event Fired For : "+key_press;
+}
+
+function moveRight(){
+  if (holdingD == true){
+    gomX = gomX+10;
+    document.getElementById('gomez').style.left = '50px';
+    setTimeout('moveRight()',1000);
+  }
+}
+
+document.onkeyup = function(event){
+  var whichKeyUp = event.keyCode;
+  if (whichKeyUp == 68){
+    holdingD = false;
+  }
+}
+*/
+
+
+
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36765112-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+
+
+function checkBrowser(){
+if(navigator.userAgent.search("MSIE") >= 0){
+  browserSucks();
+}
+else if(navigator.userAgent.search("Opera") >= 0){
+  browserSucks();
+}
+}
+
+function browserSucks(){
+ alert("Your browser sucks! Well not really, developers usually say that because they are too lazy to make their website good. Well, I'm lazy too so this website basically looks a bit messed up I think. So you might want to download chrome/safari, or use your iPad if you have one. Or you can go to www.j.mp/fezcanvas that one might work.");
+}
+
+function blockMove() {
+      event.preventDefault() ;
+}
+
+window.onresize = setPos;
+window.onload = onLoad;
+
+function onLoad()
+{
+  checkBrowser();
+  setPos();
+  checkLoad();
+  document.getElementById('loading').style.visibility = "hidden";
+}
+
+function setWindowSize()
+{
+winW = window.innerWidth;
+winH = window.innerHeight;
+//alert("width: "+winW+" height: "+winH);
+}
+
+
+
+function moveIt(obj, top, left, width, height) {
+	obj.style.position = "fixed";
+	obj.style.top = top;
+	obj.style.left = left;
+        obj.style.width = width;
+        obj.style.height = height;
+}
+
+function changeSize(obj, width, height) {
+        obj.style.width = width;
+        obj.style.height = height;
+}
+
+
+
+function setPos() {
+    setWindowSize();
+    iheight = winH*0.9;
+    iwidth = iheight*(1680/2233);
+    ileft = winW/2-iwidth/2;
+    itop2 = winH*0.1-20;
+    moveIt(document.getElementById('islandDiv'), itop2+'px', ileft+'px', iwidth+'px', iheight+'px');
+    changeSize(document.getElementById('island'), iwidth+'px', iheight+'px');
+    height = iheight*0.11;
+    width = height;
+    left = ileft+iwidth*0.25;
+    top2 = itop2+iheight*0.37;
+    moveIt(document.getElementById('millDiv'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('mill'), width+'px', height+'px');
+    height = iheight*0.03;
+    width = height;
+    left = ileft+iwidth*0.5;
+    top2 = itop2+iheight*0.633;
+    moveIt(document.getElementById('grain1Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('grain1'), width+'px', height+'px');
+    height = iheight*0.03;
+    width = height;
+    left = ileft+iwidth*0.215;
+    top2 = itop2+iheight*0.632;
+    moveIt(document.getElementById('grain2Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('grain2'), width+'px', height+'px');
+    height = iheight*0.02;
+    width = height*(54/45);
+    left = ileft+iwidth*0.28;
+    top2 = itop2+iheight*0.6;
+    moveIt(document.getElementById('butterfly11Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('butterfly11'), width+'px', height+'px');
+    height = iheight*0.02;
+    width = height*(54/45);
+    left = ileft+iwidth*0.6;
+    top2 = itop2+iheight*0.39;
+    moveIt(document.getElementById('butterfly12Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('butterfly12'), width+'px', height+'px');
+    height = iheight*0.02;
+    width = height*(54/45);
+    left = ileft+iwidth*0.7;
+    top2 = itop2+iheight*0.6;
+    moveIt(document.getElementById('butterfly21Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('butterfly21'), width+'px', height+'px');
+    height = iheight*0.02;
+    width = height*(54/45);
+    left = ileft+iwidth*0.25;
+    top2 = itop2+iheight*0.35;
+    moveIt(document.getElementById('butterfly22Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('butterfly22'), width+'px', height+'px');
+
+
+    height = iheight*0.02;
+    width = height*(150/42);
+    left = ileft+iwidth*0.18;
+    top2 = itop2+iheight*0.5565;
+    moveIt(document.getElementById('gull1Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('gull1'), width+'px', height+'px');
+    left = ileft+iwidth*0.455;
+    top2 = itop2+iheight*0.0005;
+    moveIt(document.getElementById('gull2Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('gull2'), width+'px', height+'px');
+
+    height = iheight*0.007;
+    width = height*(18/12);
+    left = ileft+iwidth*0.75;
+    top2 = itop2+iheight*0.647;
+    moveIt(document.getElementById('redFlowerDiv'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('redFlower'), width+'px', height+'px');
+    left = ileft+iwidth*0.7;
+    top2 = itop2+iheight*0.6457;
+    moveIt(document.getElementById('blueFlowerDiv'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('blueFlower'), width+'px', height+'px');
+    height = iheight*0.005;
+    width = height*(15/9);
+    left = ileft+iwidth*0.77;
+    top2 = itop2+iheight*0.6457;
+    moveIt(document.getElementById('grass1Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('grass1'), width+'px', height+'px');
+    height = iheight*0.003;
+    width = height*(15/9);
+    left = ileft+iwidth*0.73;
+    top2 = itop2+iheight*0.6457;
+    moveIt(document.getElementById('grass2Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('grass2'), width+'px', height+'px');
+
+    height = iheight*0.007;
+    width = height*(18/12);
+    left = ileft+iwidth*0.51;
+    top2 = itop2+iheight*0.3907;
+    moveIt(document.getElementById('redFlower2Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('redFlower2'), width+'px', height+'px');
+    left = ileft+iwidth*0.5;
+    top2 = itop2+iheight*0.4107;
+    moveIt(document.getElementById('blueFlower2Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('blueFlower2'), width+'px', height+'px');
+    height = iheight*0.005;
+    width = height*(15/9);
+    left = ileft+iwidth*0.51;
+    top2 = itop2+iheight*0.4107;
+    moveIt(document.getElementById('grass3Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('grass3'), width+'px', height+'px');
+    height = iheight*0.003;
+    width = height*(15/9);
+    left = ileft+iwidth*0.53;
+    top2 = itop2+iheight*0.4107;
+    moveIt(document.getElementById('grass4Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('grass4'), width+'px', height+'px');
+
+    height = iheight*0.007;
+    width = height*(18/12);
+    left = ileft+iwidth*0.9;
+    top2 = itop2+iheight*0.4107;
+    moveIt(document.getElementById('redFlower3Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('redFlower3'), width+'px', height+'px');
+    left = ileft+iwidth*0.8;
+    top2 = itop2+iheight*0.4107;
+    moveIt(document.getElementById('blueFlower3Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('blueFlower3'), width+'px', height+'px');
+    height = iheight*0.005;
+    width = height*(15/9);
+    left = ileft+iwidth*0.85;
+    top2 = itop2+iheight*0.4107;
+    moveIt(document.getElementById('grass5Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('grass5'), width+'px', height+'px');
+    height = iheight*0.003;
+    width = height*(15/9);
+    left = ileft+iwidth*0.87;
+    top2 = itop2+iheight*0.4107;
+    moveIt(document.getElementById('grass6Div'), top2+'px', left+'px', width+'px', height+'px');
+    changeSize(document.getElementById('grass6'), width+'px', height+'px');
+
+
+
+    moveIt(document.getElementById('vignette'), '0px', '0px', winW+'px', winH+'px');
+    moveIt(document.getElementById('blueAir'), '0px', '0px', winW+'px', winH+'px');
+    moveIt(document.getElementById('redAir'), '0px', '0px', winW+'px', winH+'px');
+    moveIt(document.getElementById('stars'), '0px', '0px', winW+'px', winH+'px');
+    moveIt(document.getElementById('darkAir'), '0px', '0px', winW+'px', winH+'px');
+    moveIt(document.getElementById('darkAirBack'), '0px', '0px', winW+'px', winH+'px');
+    moveIt(document.getElementById('pinkAir'), '0px', '0px', winW+'px', winH+'px');
+    moveIt(document.getElementById('halfYellowAir'), '0px', '0px', winW+'px', winH+'px');
+    moveIt(document.getElementById('yellowAir'), '0px', '0px', winW+'px', winH+'px');
+    moveIt(document.getElementById('brightBlueAir'), '0px', '0px', winW+'px', winH+'px');
+    width = 32;
+    height = width;
+    left = winW-60;
+    top2 = winH-60;
+    moveIt(document.getElementById('i'), top2+'px', left+'px', width+'px', height+'px');
+    height = 600;
+    width = 310;
+    left = winW-320;
+    top2 = winH-620;
+    moveIt(document.getElementById('infoContainer'), top2+'px', left+'px', width+'px', height+'px');
+    height = winH/7;
+    width = height*(294/193);
+    moveIt(document.getElementById('cloud1'), '0px', '0px', width+'px', height+'px');
+    moveIt(document.getElementById('cloud8'), '40%', '0px', width+'px', height+'px');
+    height = winH/6;
+    width = height*(186/111);
+    moveIt(document.getElementById('cloud2'), '20%', '0px', width+'px', height+'px');
+    moveIt(document.getElementById('cloud4'), '60%', '0px', width+'px', height+'px');
+    moveIt(document.getElementById('cloud6'), '0%', '0px', width+'px', height+'px');
+    height = winH/7;
+    width = height*(170/87);
+    moveIt(document.getElementById('cloud3'), '40%', '0px', width+'px', height+'px');
+    moveIt(document.getElementById('cloud9'), '60%', '0px', width+'px', height+'px');
+    moveIt(document.getElementById('cloud10'), '80%', '0px', width+'px', height+'px');
+    height = winH/6;
+    width = height*(203/140);
+    moveIt(document.getElementById('cloud4'), '60%', '0px', width+'px', height+'px');
+    moveIt(document.getElementById('cloud5'), '80%', '0px', width+'px', height+'px');
+    moveIt(document.getElementById('cloud7'), '20%', '0px', width+'px', height+'px');
+}
+
+function infoClicked(){
+if (document.getElementById('infoContainer').style.visibility == "hidden"){
+    document.getElementById('infoContainer').style.visibility = "visible";
+    document.getElementById('iFrame').style.left = "0px";
+    document.getElementById('infoContainer').style.overflowY = "scroll";
+    document.getElementById('i').style.visibility = "hidden";
+}else{
+    document.getElementById('infoContainer').style.visibility = "hidden";
+    document.getElementById('iFrame').style.left = "300px";
+    document.getElementById('infoContainer').style.overflowY = "hidden";
+    document.getElementById('i').style.visibility = "visible";
+}
+}
+
+function vigClick(){
+if (document.getElementById('infoContainer').style.visibility == "visible"){
+    document.getElementById('infoContainer').style.visibility = "hidden";
+    document.getElementById('iFrame').style.left = "300px";
+    document.getElementById('infoContainer').style.overflowY = "hidden";
+    document.getElementById('i').style.visibility = "visible";
+}}
+
+
+
+
+
+function setCookie(c_name,value,exdays)
+{
+var exdate=new Date();
+exdate.setDate(exdate.getDate() + exdays);
+var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+document.cookie=c_name + "=" + c_value;
+}
+
+
+
+function getCookie(c_name)
+{
+var i,x,y,ARRcookies=document.cookie.split(";");
+for (i=0;i<ARRcookies.length;i++)
+{
+  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+  x=x.replace(/^\s+|\s+$/g,"");
+  if (x==c_name)
+    {
+    return unescape(y);
+    }
+  }
+}
+
+
+function checkLoad()
+{
+  var checked=getCookie("vignette");
+  if(checked==0){
+    vignette.style.opacity = 0;
+  }
+  if(checked==1){
+    vigCheck.checked = true;
+    vignette.style.opacity = 1;
+  }
+}
+
+
+function setVig()
+{
+  if(vigCheck.checked == true){
+    vignette.style.opacity = 1;
+    setCookie("vignette",1,30);
+  }else{
+    vignette.style.opacity = 0;
+    setCookie("vignette",0,1);
+  }
+    //alert("setVig");
+}
+
+
+</script>
+<script src="http://cdn.adf.ly/js/entry.js" type="text/javascript"></script> 
+<style type="text/css"> 
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+ 
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0);
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.5);
+}
+
+::-webkit-scrollbar-track:hover{
+    background-color: rgba(0,0,0,0.2);
+}
+
+::-webkit-scrollbar-button{
+    visibility:hidden;
+}
+
+.no-flick{-webkit-transform:translate3d(0,0,0);}
+.pixelated{image-rendering: -webkit-optimize-contrast; image-rendering: -moz-crisp-edges;}
+.non-pixelated{image-rendering: auto;}
+
+#i
+{
+    z-index:1010001;
+    opacity:0.2;
+    width:0px;
+    -webkit-animation: iFlicker 1s ease-in-out 0s 30 alternate;
+    -moz-animation: iFlicker 1s ease-in-out 0s 30 alternate;
+    -webkit-transition: opacity 0.2s linear;
+    -moz-transition: opacity 0.2s linear;
+}
+
+#i:hover{
+    opacity:1;
+}
+
+@-webkit-keyframes iFlicker
+{
+0%{opacity:1;}
+100%{opacity:0.2;}
+}
+
+@-moz-keyframes iFlicker
+{
+0%{opacity:0.3;}
+100%{opacity:1;}
+}
+
+#millDiv
+{
+z-index:-15;
+width:0px;
+rotation-point:50% 50%;
+-webkit-transform: rotate(45deg);
+-webkit-animation:millRotating 10s linear 0s infinite normal;
+-moz-transform: rotate(45deg);
+-moz-animation:millRotating 10s linear 0s infinite normal;
+}
+
+#mill{width:0px;}
+
+@-webkit-keyframes millRotating
+{
+0%{-webkit-transform: rotate(0deg);}
+100%{-webkit-transform: rotate(360deg);}
+}
+
+@-moz-keyframes millRotating
+{
+0%{-moz-transform: rotate(0deg);}
+100%{-moz-transform: rotate(360deg);}
+}
+
+.grainDiv
+{
+z-index:-16;
+width:0px;
+}
+
+.grain{width:0px; image-rendering: -webkit-optimize-contrast;}
+
+.butterflyDiv
+{
+z-index:-17;
+width:0px;
+}
+
+.butterfly{width:0px; image-rendering: -webkit-optimize-contrast;}
+
+#vignette
+{
+    background-image: -webkit-gradient(
+	radial,
+	50% 50%,
+        300,
+        50% 50%,
+        1000,
+	color-stop(0, rgba(0,0,0,0)),
+	color-stop(1, rgba(0,0,0,0.5))
+);
+background: -moz-radial-gradient(ellipse, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+    background-repeat: no-repeat;
+    z-index:1000000;
+    opacity: 0;
+}
+
+#blueAir
+{
+    background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(146,231,255)),
+	color-stop(1, rgb(41,197,255))
+);
+    background-image: -moz-linear-gradient(bottom, rgb(146,231,255) 0%, rgb(41,197,255) 100%);
+    background-color: rgb(146,231,255);
+    background-repeat: no-repeat;
+    z-index:-40;
+    -webkit-animation:airBlue 260s linear 0s infinite normal;
+    -moz-animation:airBlue 260s linear 0s infinite normal;
+}
+
+#redAir
+{
+    background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.59, rgb(104,57,121)),
+	color-stop(0.5, rgb(147,79,140)),
+	color-stop(0.38, rgb(150,82,141)),
+	color-stop(0.23, rgb(181,100,149)),
+	color-stop(0.18, rgb(185,100,150)),
+	color-stop(0.1, rgb(215,114,156))
+);
+    background-image: -moz-linear-gradient(bottom, rgb(215,114,156) 10%, rgb(185,100,150) 18%, rgb(181,100,149) 23%, rgb(150,82,141) 38%, rgb(147,79,140) 50%, rgb(104,57,121) 59%);
+    background-color: rgb(146,231,255);
+    background-repeat: no-repeat;
+    z-index:-50;
+   -webkit-animation:airAway 260s linear 100s infinite normal;
+   -moz-animation:airAway 260s linear 100s infinite normal;
+}
+
+#stars
+{
+    background:url(img/stars.png);
+    z-index:-19;
+    opacity:0;
+    -webkit-animation:airDark 260s linear 0s infinite normal;
+    -moz-animation:airDark 260s linear 0s infinite normal;
+    background-size: 100%;
+}
+
+#darkAir
+{
+    background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.31, rgb(0,0,0)),
+	color-stop(0, rgb(45,0,30))
+);
+    background-image: -moz-linear-gradient(bottom, rgb(45,0,30) 0%, rgb(0,0,0) 31%);
+    background-color: rgb(146,231,255);
+    background-repeat: no-repeat;
+    z-index:-20;
+    opacity:0;
+   -webkit-animation:airDark 260s linear 0s infinite normal;
+   -moz-animation:airDark 260s linear 0s infinite normal;
+}
+
+#darkAirBack
+{
+    background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.31, rgb(0,0,0)),
+	color-stop(0, rgb(45,0,30))
+);
+    background-image: -moz-linear-gradient(bottom, rgb(45,0,30) 0%, rgb(0,0,0) 31%);
+    background-color: rgb(146,231,255);
+    background-repeat: no-repeat;
+    z-index:-40;
+    opacity:0;
+   -webkit-animation:airDarkBack 260s linear 0s infinite normal;
+   -moz-animation:airDarkBack 260s linear 0s infinite normal;
+}
+
+#pinkAir
+{
+    background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(214,0,89)),
+	color-stop(1, rgb(138,2,72))
+);
+
+    background-image: -moz-linear-gradient(bottom, rgb(138,2,72) 100%, rgb(214,0,89) 0%);
+    background-color: rgb(146,231,255);
+    background-repeat: no-repeat;
+    z-index:-60;
+   -webkit-animation:airAway 260s linear 180s infinite normal;
+   -moz-animation:airAway 260s linear 180s infinite normal;
+}
+
+#halfYellowAir
+{
+    background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+        color-stop(1, rgb(220,36,107)),
+	color-stop(0, rgb(242,200,30))
+);
+    background-image: -moz-linear-gradient(bottom, rgb(242,200,30) 0%, rgb(220,36,107) 100%);
+    background-color: rgb(146,231,255);
+    background-repeat: no-repeat;
+    z-index:-70;
+   -webkit-animation:airAway 260s linear 200s infinite normal;
+   -moz-animation:airAway 260s linear 200s infinite normal;
+}
+
+#yellowAir
+{
+    background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+        color-stop(1, rgb(224,204,49)),
+	color-stop(0, rgb(233,236,137))
+);
+
+    background-image: -moz-linear-gradient(bottom, rgb(233,236,137) 0%, rgb(224,204,49) 100%);
+    background-color: rgb(146,231,255);
+    background-repeat: no-repeat;
+    z-index:-80;
+   -webkit-animation:airAway 260s linear 220s infinite normal;
+   -moz-animation:airAway 260s linear 220s infinite normal;
+}
+
+#brightBlueAir
+{
+    background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(1, rgb(144,247,255)),
+	color-stop(0, rgb(187,255,250))
+);
+    background-image: -moz-linear-gradient(bottom, rgb(187,255,250) 0%, rgb(144,247,255) 100%);
+    background-color: rgb(146,231,255);
+    background-repeat: no-repeat;
+    z-index:-90;
+}
+
+@-webkit-keyframes airAway
+{
+0%{opacity:1;}
+7.692307692%{opacity:0;}
+80%{opacity:0;}
+81%{opacity:1;}
+100%{opacity:1;}
+}
+
+@-webkit-keyframes airAppear
+{
+0%{opacity:0;}
+7.692307692%{opacity:1;}
+80%{opacity:1;}
+81%{opacity:0;}
+100%{opacity:0;}
+}
+
+@-webkit-keyframes airBlue
+{
+0%{opacity:1;}
+23.07692308%{opacity:1;}
+30.76923077%{opacity:0;}
+80%{opacity:0;}
+81%{opacity:1;}
+100%{opacity:1;}
+}
+
+@-webkit-keyframes airDark
+{
+0%{opacity:0;}
+30.76923077%{opacity:0;}
+38.46153846%{opacity:0.9;}
+61.53846154%{opacity:0.9;}
+69.23076923%{opacity:0;}
+100%{opacity:0;}
+}
+
+@-webkit-keyframes airDarkBack
+{
+0%{opacity:0;}
+30.76923077%{opacity:0;}
+38.46153846%{opacity:1;}
+61.53846154%{opacity:1;}
+69.23076923%{opacity:0;}
+100%{opacity:0;}
+}
+
+@-moz-keyframes airAway
+{
+0%{opacity:1;}
+7.692307692%{opacity:0;}
+80%{opacity:0;}
+81%{opacity:1;}
+100%{opacity:1;}
+}
+
+@-moz-keyframes airAppear
+{
+0%{opacity:0;}
+7.692307692%{opacity:1;}
+80%{opacity:1;}
+81%{opacity:0;}
+100%{opacity:0;}
+}
+
+@-moz-keyframes airBlue
+{
+0%{opacity:1;}
+23.07692308%{opacity:1;}
+30.76923077%{opacity:0;}
+80%{opacity:0;}
+81%{opacity:1;}
+100%{opacity:1;}
+}
+
+@-moz-keyframes airDark
+{
+0%{opacity:0;}
+30.76923077%{opacity:0;}
+38.46153846%{opacity:0.9;}
+61.53846154%{opacity:0.9;}
+69.23076923%{opacity:0;}
+100%{opacity:0;}
+}
+
+@-moz-keyframes airDarkBack
+{
+0%{opacity:0;}
+30.76923077%{opacity:0;}
+38.46153846%{opacity:1;}
+61.53846154%{opacity:1;}
+69.23076923%{opacity:0;}
+100%{opacity:0;}
+}
+
+#cloud1
+{
+position:fixed;
+top: 0%;
+-webkit-animation:cloud 50s linear -35s infinite normal;
+-moz-animation:cloud 50s linear -35s infinite normal;
+z-index:-30;
+/*-webkit-backface-visibility: hidden;*/
+}
+
+#cloud2
+{
+position:fixed;
+top: 20%;
+-webkit-animation:cloud 75s linear -37.5s infinite normal;
+-moz-animation:cloud 75s linear -37.5s infinite normal;
+z-index:-30;
+}
+
+#cloud3
+{
+position:fixed;
+top: 40%;
+-webkit-animation:cloud 100s linear -90s infinite normal;
+-moz-animation:cloud 100s linear -90s infinite normal;
+z-index:-30;
+}
+
+#cloud4
+{
+position:fixed;
+top: 60%;
+-webkit-animation:cloud 75s linear -97.5s infinite normal;
+-moz-animation:cloud 75s linear -97.5s infinite normal;
+z-index:-30;
+}
+
+#cloud5
+{
+position:fixed;
+top: 80%;
+-webkit-animation:cloud 50s linear -45s infinite normal;
+-moz-animation:cloud 50s linear -45s infinite normal;
+z-index:-30;
+}
+
+#cloud6
+{
+position:fixed;
+top: 0%;
+-webkit-animation:cloud 50s linear -10s infinite normal;
+-moz-animation:cloud 50s linear -10s infinite normal;
+z-index:-30;
+/*-webkit-backface-visibility: hidden;*/
+}
+
+#cloud7
+{
+position:fixed;
+top: 20%;
+-webkit-animation:cloud 75s linear 0s infinite normal;
+-moz-animation:cloud 75s linear 0s infinite normal;
+z-index:-30;
+}
+
+#cloud8
+{
+position:fixed;
+top: 40%;
+-webkit-animation:cloud 100s linear -40s infinite normal;
+-moz-animation:cloud 100s linear -40s infinite normal;
+z-index:-30;
+}
+
+#cloud9
+{
+position:fixed;
+top: 60%;
+-webkit-animation:cloud 75s linear -60s infinite normal;
+-moz-animation:cloud 75s linear -60s infinite normal;
+z-index:-30;
+}
+
+#cloud10
+{
+position:fixed;
+top: 80%;
+-webkit-animation:cloud 50s linear -20s infinite normal;
+-moz-animation:cloud 50s linear -20s infinite normal;
+z-index:-30;
+}
+
+@-webkit-keyframes cloud
+{
+0% {left:15%; opacity:0;}
+40%{opacity:0.7;}
+60%{opacity:0.7;}
+100% {left:70%; opacity:0;}
+}
+
+@-moz-keyframes cloud
+{
+0% {left:15%; opacity:0;}
+40%{opacity:0.7;}
+60%{opacity:0.7;}
+100% {left:70%; opacity:0;}
+}
+
+#islandDiv
+{
+    z-index: -18;
+    width:0px;
+/*    -webkit-backface-visibility: visible; */
+}
+
+#island{width:0px;}
+
+#infoContainer
+{
+    width:310px;
+    height:600px;
+    position:absolute;
+    border-radius:5px;
+    z-index:1000010;
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
+    visibility: hidden;
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.5);
+}
+
+#logo
+{
+    position:relative;
+    left: 10px;
+    width: 280px;
+    height: 280px;
+}
+
+#logo:hover{
+    opacity:0.7;
+}
+
+h1
+{
+    margin:10px;
+    font-family:"Arial";
+    line-height:18px;
+    font-weight:bold;
+    font-size: 20px;
+}
+
+p
+{
+    margin:10px;
+    font-family:"Arial";
+    line-height:18px;
+}
+
+a
+{
+    color:black;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+a:hover
+{
+    color: rgba(0,0,0,0.7);
+}
+
+#vigCheck
+{
+    position: absolute;
+    margin: 10px;
+    opacity: 0.2;
+    z-index: 1000020;
+}
+
+#vigCheck:hover
+{
+    opacity: 1;
+}
+
+#frontAirLayer
+{
+    opacity:0.1;
+}
+
+#loading
+{
+z-index:20;
+position:relative;
+padding:10px;
+background-color: white;
+box-shadow: 0px 10px 50px rgba(0,0,0,0.5);
+border-radius:2px;
+font-family:"Arial";
+font-size: 20px;
+height:20px;
+width: 100px;
+margin:auto;
+top: 200px;
+}
+
+#loadingText
+{
+text-align:center;
+padding:0px;
+margin:0px;
+}
+
+#loadImg
+{
+margin-left:10px;
+position: relative;
+top:3px;
+width:15px;
+height:15px;
+-webkit-animation:loading 1s linear infinite normal;
+-moz-animation:loading 1s linear infinite normal;
+}
+
+@-webkit-keyframes loading{
+0%{
+-webkit-transform: rotate(0deg);
+}
+100%{
+-webkit-transform: rotate(360deg);
+}}
+
+@-moz-keyframes loading{
+0%{
+-moz-transform: rotate(0deg);
+}
+100%{
+-moz-transform: rotate(360deg);
+}}
+
+
+#gomez
+{
+  background-color:black;
+  width:20px;
+  height:20px;
+  top:20px;
+  left:20px;
+}
+
+
+</style>
+</head>
+<body>
+
+
+
+<div id="loading">
+<p id="loadingText">Loading<img id="loadImg" src="smb/loading.png"/></p>
+</div>
+
+
+
+
+<div id="vignette" ontouchmove="blockMove()" onclick="vigClick()"> </div>
+<div id="islandShit">
+ <!--<div id="gomez"></div>-->
+ <div id="millDiv"><img id="mill" class="pixelated" width="800px" src="img/mill.png" /></div>
+ <div id="butterfly11Div" class="butterflyDiv"><img id="butterfly11" class="butterfly" width="800px" src="img/butterfly1.gif" /></div>
+ <div id="butterfly12Div" class="butterflyDiv"><img id="butterfly12" class="butterfly" width="800px" src="img/butterfly1.gif" /></div>
+ <div id="butterfly21Div" class="butterflyDiv"><img id="butterfly21" class="butterfly" width="800px" src="img/butterfly2.gif" /></div>
+ <div id="butterfly22Div" class="butterflyDiv"><img id="butterfly22" class="butterfly" width="800px" src="img/butterfly2.gif" /></div>
+ <div id="grain1Div" class="grainDiv"><img id="grain1" class="grain" width="800px" src="img/grain.gif" /></div>
+ <div id="grain2Div" class="grainDiv"><img id="grain2" class="grain" width="800px" src="img/grain.gif" /></div>
+ <div id="islandDiv"><img id="island" class="pixelated" width="800px" src="img/island.png" /></div>
+ <div id="gull1Div"><img id="gull1" class="pixelated" width="0px" src="img/gull.gif" /></div>
+ <div id="gull2Div"><img id="gull2" class="pixelated" width="0px" src="img/gull.gif" /></div>
+
+ <div id="redFlowerDiv"><img id="redFlower" class="pixelated" width="0px" src="img/redFlower.gif" /></div>
+ <div id="blueFlowerDiv"><img id="blueFlower" class="pixelated" width="0px" src="img/blueFlower.gif" /></div>
+ <div id="grass1Div"><img id="grass1" class="pixelated" width="0px" src="img/grass1.gif" /></div>
+ <div id="grass2Div"><img id="grass2" class="pixelated" width="0px" src="img/grass2.gif" /></div>
+
+ <div id="redFlower2Div"><img id="redFlower2" class="pixelated" width="0px" src="img/redFlower.gif" /></div>
+ <div id="blueFlower2Div"><img id="blueFlower2" class="pixelated" width="0px" src="img/blueFlower.gif" /></div>
+ <div id="grass3Div"><img id="grass3" class="pixelated" width="0px" src="img/grass1.gif" /></div>
+ <div id="grass4Div"><img id="grass4" class="pixelated" width="0px" src="img/grass2.gif" /></div>
+
+ <div id="redFlower3Div"><img id="redFlower3" class="pixelated" width="0px" src="img/redFlower.gif" /></div>
+ <div id="blueFlower3Div"><img id="blueFlower3" class="pixelated" width="0px" src="img/blueFlower.gif" /></div>
+ <div id="grass5Div"><img id="grass5" class="pixelated" width="0px" src="img/grass1.gif" /></div>
+ <div id="grass6Div"><img id="grass6" class="pixelated" width="0px" src="img/grass2.gif" /></div>
+</div>
+<div id="clouds">
+ <img id="cloud1" src="img/clouds/cloud1.png"/>
+ <img id="cloud2" src="img/clouds/cloud2.png"/>
+ <img id="cloud3" src="img/clouds/cloud3.png"/>
+ <img id="cloud4" src="img/clouds/cloud4.png"/>
+ <img id="cloud5" src="img/clouds/cloud4.png"/>
+ <img id="cloud6" src="img/clouds/cloud2.png"/>
+ <img id="cloud7" src="img/clouds/cloud4.png"/>
+ <img id="cloud8" src="img/clouds/cloud1.png"/>
+ <img id="cloud9" src="img/clouds/cloud3.png"/>
+ <img id="cloud10" src="img/clouds/cloud3.png"/>
+</div>
+<div id="air">
+ <div id="blueAir" onload="setPos()"> </div>
+ <div id="redAir"> </div>
+ <div id="stars" class="pixelated"> </div>
+ <div id="darkAir"> </div>
+ <div id="darkAirBack"> </div>
+ <div id="pinkAir"> </div>
+ <div id="halfYellowAir"> </div>
+ <div id="yellowAir"> </div>
+ <div id="brightBlueAir"> </div>
+</div>
+
+
+<img id="i" src="img/i.png" onclick="infoClicked()" />
+
+<div id="infoContainer" style="visibility: hidden;"> 
+
+
+<input type="checkbox" name="vignette" value="vignette" id="vigCheck" title="vignette on/off. (uses cookies if on)" onclick="setVig()"/>
+
+<a href="http://fezgame.com/" target="_blank"><img src="img/logo.png" id="logo" class="non-pixelated" /></a>
+
+<p>I created this html page to use as desktop wallpaper, for mac you can use <a target="_blank" href="http://webdesktop.en.softonic.com/mac">WebDesktop</a> to set this page as background wallpaper. For windows you can use one of <a target="_blank" href="http://www.makeuseof.com/tag/three-replacements-for-windows-active-desktop/">these.</a> <br><br> <a target="_blank" href="http://polytroncorporation.com/what-is-fez">FEZ</a> is a game for <a target="_blank" href="http://marketplace.xbox.com/en-CA/Product/Fez/66acd000-77fe-1000-9115-d802584109c0">XBOX LIVE ARCADE</a> developed by <a target="_blank" href="http://polytroncorporation.com/">POLYTRON</a>.
+In it, you play as Gomez, a 2D creature living in what he believes is a 2D world.
+Until a strange and powerful artifact reveals to him the existence of a mysterious third dimension!</p> 
+
+<p ><iframe id="iFrame" width="280" height="54" style="margin:10px; position: relative; display: block; width: 280px; height: 54px; left: 300px;" src="http://bandcamp.com/EmbeddedPlayer/v=2/album=688853505/layout=http_3A_2F_2Fdl.dropbox.com_2Fu_2F9393890_2FFez_2Fbandcamp.txt/linkcol=000000/transparent=true/" allowtransparency="true" frameborder="0"><a href="http://disasterpeace.com/album/fez" target="_blank">FEZ by Disasterpeace</a></iframe></p>
+
+<h1>Created by Jesper</h1>
+<p><a href="http://www.youtube.com/jespertheend" target="_blank">youtube.com/jespertheend</a> <a href="https://twitter.com/jespertheend" target="_blank">@Jespertheend</a> <br>(I don't say much useful stuff though)<br>But it's handy if you found a bug or something.</p>
+
+<h1>Ugly image</h1>
+<p>As you can see the image of the island is a bit ugly. There are blue edges everywhere and that house in the middle has got an edge where the color is completely different. So if you want to help me making the island look better and you bought fez. Go to the start island and make screenshots of every part of the island while it's day, send them to <a href="http://www.twitter.com/jespertheend" target="_blank">@jespertheend</a> or <a href="mailto:spammail882@gmail.com" target="_blank">this email</a> and I'll do the rest.</p>
+
+<h1>Donating sucks!</h1>
+<p>Because then you have to pay yourself, nope no donate button here. I'm not allowed to make money with this anyway, because I do not own Fez. But if you want to go to a page saying thanks for no particular reason, you can click <a href="http://adf.ly/FYe99" target="_blank">this</a> adf.ly link.</p>
+
+<p>You might also like <a href="index2.html" target="_blank">this one</a> and <a href="index3.html" target="_blank">this one</a></p>
+
+<h1>Changelog</h1><p>
+-day/night transitions are correct now
+<br>-Added waving flowers and grass
+<br>-GULLS ADDED!!!
+<br>-created a shorter url with bit.ly: <a href="http://www.j.mp/FEZhtml" target="_blank">j.mp/FEZhtml</a> (case sensitive)
+<br>-made the 'i' a bit noticable
+<br>-added loading screen
+<br>-removed 'i' button when the infobox was visible, you can click the infobox away by clicking anywhere else instead.
+<br>-Fancy scrollbars!
+<br>-Removed ugly scrollbars when the infobox wasn't visible (thanks <a href="http://www.twitter.com/achrafkassioui" target="_blank">@achrafkassioui</a>)
+<br>-Added changelog
+<br>-removed player when the box wasn't visible on iPad
+<br>-made the information box scrollable and added some text
+<br>-added some meta tags for iPad (now you have a nice icon and fullscreen app if you 'add to home screen')
+<br>-made it Firefox friendly
+<br>-added butterflies
+<br>-added moving grane
+<br>-made the pixels sharper for chrome
+<br>-added stars
+<br>-added day/night cycle
+<br>-I don't really know it anymore from here on but that doesn't really matter, does it?</p>
+
+
+
+</div>
+
+
+
+</body>
+</html>

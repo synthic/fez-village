@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="user-scalable = no" />
+<script type="text/javascript">
+
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36765112-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+
+
+
+window.onresize = setPos;
+window.onload = setPos;
+
+function setWindowSize()
+{
+winW = window.innerWidth;
+winH = window.innerHeight;
+//alert("width: "+winW+" height: "+winH);
+}
+
+
+
+function moveIt(obj, top, left, width, height) {
+	obj.style.position = "fixed";
+	obj.style.top = top;
+	obj.style.left = left;
+        obj.style.width = width;
+        obj.style.height = height;
+}
+
+
+
+function setPos() {
+    setWindowSize();
+
+    moveIt(document.getElementById('char'), '0px', '0px', winW+'px', winH+'px');
+
+    height = winH*0.5;
+    width = height*(13/19);
+    left = winW/2-width/2;
+    top2 = winH/2-(height/2);
+    moveIt(document.getElementById('char'), top2+'px', left+'px', width+'px', height+'px');
+
+    moveIt(document.getElementById('vignette'), '0px', '0px', winW+'px', winH+'px');
+
+    if(winW>1800 || winH>1800)
+    {
+        if(winW>winH){
+            width=winW*1.2;
+            height=width
+        }else{
+            height=winH*1.2;
+            width=height;
+        }
+    }else{
+        height = 2000;
+        width = 2000;
+    }
+    left = winW/2-width/2;
+    top2 = winH/2-height/2;
+    moveIt(document.getElementById('shiny'), top2+'px', left+'px', width+'px', height+'px');
+
+   document.getElementById('loading').style.visibility = "hidden";
+}
+
+
+
+</script>
+<style type="text/css">
+
+#char
+{
+z-index:10;
+width:0px;
+png-shadow: 10px 10px 20px rgba(0,0,0,0.1);
+}
+
+#shiny
+{
+z-index: -10;
+-webkit-animation:shiny 3s ease-in-out infinite alternate;
+-moz-animation:shiny 3s ease-in-out infinite alternate;
+rotation-point:50% 50%;
+width:0px;
+}
+
+
+@-webkit-keyframes shiny
+{
+0%
+{
+-webkit-transform: rotate(0deg);
+}
+
+100%
+{
+-webkit-transform: rotate(20deg);
+}
+
+}@-moz-keyframes shiny
+{
+0%
+{
+-moz-transform: rotate(0deg);
+}
+
+100%
+{
+-moz-transform: rotate(20deg);
+}
+
+}
+
+#vignette
+{
+z-index:0;
+width:0px;
+}
+
+#loading
+{
+z-index:20;
+position:relative;
+padding:10px;
+background-color: white;
+box-shadow: 0px 10px 50px rgba(0,0,0,0.5);
+border-radius:2px;
+font-family:"Arial";
+font-size: 20px;
+height:20px;
+width: 100px;
+margin:auto;
+top: 200px;
+}
+
+#loadingText
+{
+text-align:center;
+padding:0px;
+margin:0px;
+}
+
+#loadImg
+{
+margin-left:10px;
+position: relative;
+top:3px;
+width:15px;
+height:15px;
+-webkit-animation:loading 1s linear infinite normal;
+-moz-animation:loading 1s linear infinite normal;
+}
+
+@-webkit-keyframes loading{
+0%{
+-webkit-transform: rotate(0deg);
+}
+100%{
+-webkit-transform: rotate(360deg);
+}}
+
+@-moz-keyframes loading{
+0%{
+-moz-transform: rotate(0deg);
+}
+100%{
+-moz-transform: rotate(360deg);
+}}
+
+</style>
+</head>
+<body>
+
+<div id="loading">
+<p id="loadingText">Loading<img id="loadImg" src="smb/loading.png"/></p>
+</div>
+
+<img id="char" src="img/char_big.png"/>
+<img id="vignette" src="img/vignette.png"/>
+<img id="shiny" src="img/shiny_thingy.png"/>
+
+</body>
+</html>
